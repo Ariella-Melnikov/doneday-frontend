@@ -1,17 +1,8 @@
 import React, { useCallback, useState } from 'react'
-import { addBoard } from '../store/actions/board.action'
+import { addBoard } from '../../store/actions/board.action'
 import { useNavigate } from 'react-router'
-import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
-import {
-    DialogContentContainer,
-    Divider,
-    EditableText,
-    Modal,
-    ModalContent,
-    ModalFooterButtons,
-    RadioButton,
-    TextField,
-} from 'monday-ui-react-core'
+import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service'
+import { Divider, EditableText, Modal, ModalContent, ModalFooterButtons, RadioButton, TextField, } from 'monday-ui-react-core'
 
 export function AddBoard({ isOpen, onClose }) {
     const [boardTitle, setBoardTitle] = useState('')

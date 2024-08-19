@@ -1,13 +1,10 @@
 import { Link } from 'react-router-dom'
-import { Favorite } from 'monday-ui-react-core/icons'
 import { Board } from 'monday-ui-react-core/icons'
-import 'monday-ui-react-core/dist/main.css'
 
-import { toggleStarredBoard } from '../store/actions/board.action'
-import { Icon } from 'monday-ui-react-core'
-import boardPreviewImg from '../assets/img/board-preview/board-preview-02.png'
-import logoImg from '../assets/img/logo/only-logo.png'
-import StarIcon from './svgs/starIcon'
+import { toggleStarredBoard } from '../../store/actions/board.action'
+import boardPreviewImg from '../../assets/img/board-preview/board-preview-02.png'
+import logoImg from '../../assets/img/logo/only-logo.png'
+import StarIcon from '../svgs/starIcon'
 
 export function BoardPreview({ board }) {
 
@@ -15,8 +12,6 @@ export function BoardPreview({ board }) {
         event.preventDefault()
         board.isStarred = !board.isStarred
         await toggleStarredBoard(board)
-        // toggleStarredBoard(board)
-
     }
 
     return (

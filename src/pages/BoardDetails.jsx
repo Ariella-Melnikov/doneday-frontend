@@ -1,19 +1,23 @@
 import { useEffect, useState } from 'react'
-import { loadBoards, removeBoard, toggleStarredBoard, updateBoard } from '../store/actions/board.action'
 import { useNavigate, useParams } from 'react-router'
-import { GroupList } from './group/GroupList'
-import { GroupFilter } from './group/GroupsFilter/GroupFilter'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+
 import { Delete, Home, NavigationChevronDown } from 'monday-ui-react-core/icons'
-import StarIcon from './svgs/starIcon'
 import { Avatar, AvatarGroup, Button, Dialog, DialogContentContainer, Divider, EditableHeading, Menu, MenuButton, MenuItem, MenuTitle, Tab, TabList, TextArea, } from 'monday-ui-react-core'
+
+import StarIcon from '../cmps/svgs/starIcon'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
-import { UserMsg } from './UserMsg'
+import { UserMsg } from '../cmps/UserMsg'
+
+import { GroupList } from '../cmps/group/GroupList'
+import { GroupFilter } from '../cmps/group/GroupsFilter/GroupFilter'
+
+import { loadBoards, removeBoard, toggleStarredBoard, updateBoard } from '../store/actions/board.action'
 import {SOCKET_EMIT_SET_TOPIC,socketService,} from '../services/socket.service'
-import { useDispatch } from 'react-redux'
 import { debounce } from '../services/util.service'
 
 export function BoardDetails() {
+
     const { boardId } = useParams()
     const currBoard = useSelector(storeState => storeState.boardModule.boards.find(board => board._id === boardId))
     const dispatch = useDispatch()

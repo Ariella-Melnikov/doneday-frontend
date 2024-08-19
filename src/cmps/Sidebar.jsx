@@ -1,28 +1,12 @@
 import { useNavigate } from 'react-router'
 import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
+
 import { Search } from 'monday-ui-react-core/next'
+import { MenuItem, Menu, MenuDivider, DialogContentContainer, MenuTitle, Dialog, IconButton, } from 'monday-ui-react-core'
+import {Favorite, Home, NavigationChevronDown, NavigationChevronUp, DropdownChevronDown, Board, Add, } from 'monday-ui-react-core/icons'
 
-import {
-    MenuItem,
-    Menu,
-    MenuDivider,
-    DialogContentContainer,
-    MenuTitle,
-    Dialog,
-    IconButton,
-} from 'monday-ui-react-core'
-import {
-    Favorite,
-    Home,
-    NavigationChevronDown,
-    NavigationChevronUp,
-    DropdownChevronDown,
-    Board,
-    Add,
-} from 'monday-ui-react-core/icons'
-
-import { AddBoard } from './AddBoard'
+import { AddBoard } from './Board/AddBoard'
 
 export function Sidebar() {
     const boards = useSelector(storeState => storeState.boardModule.boards)

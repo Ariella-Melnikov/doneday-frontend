@@ -1,22 +1,16 @@
 import { useState, useEffect, useRef } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { NavigationChevronDown, NavigationChevronRight } from 'monday-ui-react-core/icons'
 
 import { addBoard, loadBoards, removeBoard } from '../store/actions/board.action'
 
 import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service'
 
-import { BoardList } from '../cmps/BoardList'
+import { BoardList } from '../cmps/Board/BoardList'
 import { Button, DialogContentContainer, Flex, Text, TextArea } from 'monday-ui-react-core'
 
 import boardIndexBanner from '../assets/img/monday-banners/monday-banner-index.jpeg'
-import {
-    SOCKET_EMIT_SET_TOPIC,
-    SOCKET_EVENT_BOARD_ADDED,
-    SOCKET_EVENT_BOARD_REMOVED,
-    socketService,
-} from '../services/socket.service'
-import { useDispatch } from 'react-redux'
+import { SOCKET_EMIT_SET_TOPIC, SOCKET_EVENT_BOARD_ADDED, SOCKET_EVENT_BOARD_REMOVED, socketService, } from '../services/socket.service'
 
 export function BoardIndex() {
     const [isCollapsed, setIsCollapsed] = useState(false)

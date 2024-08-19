@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { addExistingBoard } from '../store/actions/board.action.js'
+import { addExistingBoard } from '../../store/actions/board.action.js'
 import { Microphone, Night } from 'monday-ui-react-core/icons'
 import { BreadcrumbLoader } from './BreadcrumbLoader.jsx'
-import { generateBoard } from '../services/board/board.service.remote.js'
+import { generateBoard } from '../../services/board/board.service.remote.js'
 
 export function BoardBuilder() {
     const [description, setDescription] = useState('')
