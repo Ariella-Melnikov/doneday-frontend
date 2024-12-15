@@ -1,8 +1,11 @@
 .board-builder-container {
-    width: max-content;
-    margin: 10px auto;
-    padding: 0 10px;
-    gap: 2px;
+    display: flex; // Ensure flex display
+    align-items: center;
+    width: 40%; // Increased from 40%
+    max-width: 800px; // Increased from 600px
+    margin: 4px auto 24px auto;
+    padding: 8px; // Increased padding
+    gap: 5px; // Increased gap between elements
     border: 1px solid lightgrey;
     border-radius: 5px;
     * {
@@ -11,19 +14,25 @@
     input {
         border: none;
         outline: none;
+        flex-grow: 1;
+        margin: 0;
+        font-size: 1rem;
     }
+    
     .night-icon {
         transition: 0.3s;
+        margin-left: auto; // This will push the generate button to the end
         &:hover {
             background: none;
             color: #6f6dff;
         }
     }
     .mic-icon {
+        margin: 0; // Remove margin-right: auto
         transition: 0.3s;
         &:hover {
             background: none;
-            color: #0073ea;
+            color: inherit; // Keep the color as is when hovered
         }
     }
 }
@@ -61,4 +70,12 @@
 
 .breadcrumb-step.completed {
     color: rgba(106, 195, 255, 0.5);
+}
+
+.board-builder-title {
+    text-align: center;
+    margin-bottom: 20px; // Increased margin
+    width: 40%; // Make title narrower than container
+    margin-left: auto;
+    margin-right: auto;
 }

@@ -3,6 +3,7 @@ import { addExistingBoard } from '../../store/actions/board.action.js'
 import { Microphone, Night } from 'monday-ui-react-core/icons'
 import { BreadcrumbLoader } from './BreadcrumbLoader.jsx'
 import { generateBoard } from '../../services/board/board.service.remote.js'
+import { Button, Flex } from 'monday-ui-react-core'
 
 export function BoardBuilder() {
     const [description, setDescription] = useState('')
@@ -23,14 +24,14 @@ export function BoardBuilder() {
         speechRecognition.interimResults = false
         speechRecognition.maxAlternatives = 1
 
-        speechRecognition.onresult = event => {
+        speechRecognition.onresult = (event) => {
             const speechResult = event.results[0][0].transcript
             setDescription(speechResult)
             setIsRecording(false)
             setIsVoiceInput(true)
         }
 
-        speechRecognition.onerror = event => {
+        speechRecognition.onerror = (event) => {
             setError('Voice recognition error: ' + event.error)
             setIsRecording(false)
         }
@@ -59,7 +60,7 @@ export function BoardBuilder() {
         }
     }
 
-    const handleInputChange = e => {
+    const handleInputChange = (e) => {
         setDescription(e.target.value)
         setIsVoiceInput(false)
     }
@@ -73,21 +74,38 @@ export function BoardBuilder() {
             handleGenerateBoard()
         }
     }, [description, isVoiceInput])
-
     return (
         <>
             {loading && <BreadcrumbLoader />}
-            <div className='board-builder-container flex align-center justify-center'>
-                <input value={description} onChange={handleInputChange} placeholder='Project description...' />
-                <br />
-                <button className='night-icon' onClick={handleGenerateButtonClick} disabled={loading}>
-                    {loading ? 'Generating...' : <Night size={18} />}
-                </button>
-                <button className='mic-icon' onClick={handleVoiceCommand} disabled={loading || isRecording}>
+            <h1 className='board-builder-title'>Generate your project in seconds</h1>
+            <Flex align='center' justify='center' className='board-builder-container'>
+                <Button
+                    className='mic-icon'
+                    onClick={handleVoiceCommand}
+                    kind='tertiary'
+                    size='xxs'
+                    disabled={loading || isRecording}>
                     {isRecording ? 'Recording...' : <Microphone size={18} />}
-                </button>
+                </Button>
+                <input value={description} onChange={handleInputChange} placeholder='Describe your project...' />
+                <Button
+                    className='night-icon'
+                    onClick={handleGenerateButtonClick}
+                    kind='secondary'
+                    size='small'
+                    disabled={loading}
+                    style={{ backgroundColor: '#a25ddc', color: 'white' }}>
+                    {loading ? (
+                        'Generating...'
+                    ) : (
+                        <>
+                            <Night size={18} /> Generate
+                        </>
+                    )}
+                </Button>
+
                 {error && <p style={{ color: 'grey', fontSize: '0.775rem', margin: '0' }}>{error}</p>}
-            </div>
+            </Flex>
         </>
     )
 }
